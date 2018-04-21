@@ -1,8 +1,9 @@
 // Enemies our player must avoid
 var Enemy = function() {
     // Variables applied to each of our instances go here,
+    var pos_x, pos_y, speed_Random;
+    var allEnemies = [];
     // we've provided one for you to get started
-
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
@@ -41,6 +42,5 @@ document.addEventListener('keyup', function(e) {
         39: 'right',
         40: 'down'
     };
-
     player.handleInput(allowedKeys[e.keyCode]);
 });
