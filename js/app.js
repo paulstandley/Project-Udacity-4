@@ -1,12 +1,17 @@
 var allEnemies = [];
 var player;
 var speed_Random = 0;
+var random_location;
+var pos_x;
+var pos_y;
+console.log(pos_x);
 // Enemies our player must avoid
 var Enemy = function() {
     // Variables applied to each of our instances go here,
-    var pos_x, pos_y; 
-    this.speed_Random = Math.floor(Math.random()*4);
     
+    
+    this.speed_Random = Math.floor(Math.random()*4);
+    this.random_location = Math.floor(Math.random()*3);
     // we've provided one for you to get started
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
@@ -16,7 +21,7 @@ var Enemy = function() {
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
-    
+    this.speed_Random = speed_Random * dt;
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
