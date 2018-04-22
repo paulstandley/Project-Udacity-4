@@ -39,7 +39,7 @@ class Person {
         this.y = 1;
         // Variables applied to each of our instances go here,
         
-        this.sprite = 'images/enemy-bug.png';
+        this.sprite = 'images/char-boy.png';
     }
     // Update, required method for game
     // Parameter: dt, a time delta between ticks
