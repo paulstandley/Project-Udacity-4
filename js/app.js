@@ -4,7 +4,7 @@ var speed_Random = 0;
 var random_location;
 var pos_x;
 var pos_y;
-console.log(pos_x);
+
 class Enemy {
     constructor() {
         this.x = 1;
@@ -44,11 +44,15 @@ class Person {
     // Update, required method for game
     // Parameter: dt, a time delta between ticks
     update(dt) {
-        this.speed_Random = speed_Random * dt;
-        this.input = handleInput();
+    
+    
         // You should multiply any movement by the dt parameter
         // which will ensure the game runs at the same speed for
         // all computers.
+    }
+
+    handleInput(evt) {
+        console.log(evt);
     }
     // Draw the enemy on the screen, required method for game
     render() {
