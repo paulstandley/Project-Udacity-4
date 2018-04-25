@@ -1,5 +1,7 @@
 body {
     text-align: center;
+    background-color: chocolate;
+    background-blend-mode: color-dodge;
 }
 canvas {
     background-color: antiquewhite;

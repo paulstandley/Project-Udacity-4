@@ -7,11 +7,13 @@ var pos_y;
 
 class Enemy {
     constructor() {
-        this.x = 1;
-        this.y = 1;
+        pos_y = [61,141,221];
+        
         // Variables applied to each of our instances go here,
-        this.speed_Random = (Math.floor(Math.random() * 4) + 1);
-        this.random_location = Math.floor(Math.random() * 2);
+        
+        random_location = Math.floor(Math.random() * 3);
+        this.x = 1;
+        this.y = pos_y[random_location];
         // we've provided one for you to get started
         // The image/sprite for our enemies, this uses
         // a helper we've provided to easily load images
@@ -21,6 +23,7 @@ class Enemy {
     // Parameter: dt, a time delta between ticks
     update(dt) {
         this.speed_Random = speed_Random * dt;
+
         // You should multiply any movement by the dt parameter
         // which will ensure the game runs at the same speed for
         // all computers.
@@ -35,8 +38,8 @@ class Enemy {
 
 class Person {
     constructor() {
-        this.x = 1;
-        this.y = 1;
+        this.x = 201;
+        this.y = 393;
         // Variables applied to each of our instances go here,
         
         this.sprite = 'images/char-boy.png';
