@@ -1,6 +1,6 @@
 var allEnemies = [];
 var player;
-var speed_Random = 0;
+var speed_Random = 1;
 var random_location;
 var pos_x;
 var pos_y;
@@ -22,8 +22,11 @@ class Enemy {
     // Update the enemy's position, required method for game
     // Parameter: dt, a time delta between ticks
     update(dt) {
-        this.speed_Random = speed_Random * dt;
-
+        speed_Random += Math.random()*3;
+        speed_Random += speed_Random * dt;
+    
+        this.x = speed_Random;
+         Math.floor(speed_Random);
         // You should multiply any movement by the dt parameter
         // which will ensure the game runs at the same speed for
         // all computers.
@@ -38,8 +41,8 @@ class Enemy {
 
 class Person {
     constructor() {
-        this.x = 201;
-        this.y = 393;
+        this.x = 1;
+        this.y = 3;
         // Variables applied to each of our instances go here,
         
         this.sprite = 'images/char-boy.png';
@@ -72,12 +75,19 @@ class Person {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-var enemy = new Enemy();
+//var enemy = new Enemy();
 player = new Person(); 
 console.log(player);
-allEnemies.push(enemy);
+ 
+// set interval 
+setInterval(function makeNewEnemy(){ 
+    this.enemy = new Enemy();
+    allEnemies.push(enemy);
+ }, 1000);
+
+//allEnemies.push(enemy);
 console.log(allEnemies);
-console.log(enemy.speed_Random);
+
 
 
 // This listens for key presses and sends the keys to your
