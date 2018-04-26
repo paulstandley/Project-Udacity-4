@@ -2,18 +2,19 @@ var allEnemies = [];
 var player;
 var speed_Random = 1;
 var random_location;
-var pos_x;
-var pos_y;
+var pos_enemy = [];
+var pos_person = [];
+var addingX;
 
 class Enemy {
     constructor() {
-        pos_y = [61,141,221];
         
+        pos_enemy = [[1] ,[61,141,221]];
         // Variables applied to each of our instances go here,
         
         random_location = Math.floor(Math.random() * 3);
-        this.x = 1;
-        this.y = pos_y[random_location];
+        this.x = pos_enemy[0][0];
+        this.y = pos_enemy[1][random_location];
         // we've provided one for you to get started
         // The image/sprite for our enemies, this uses
         // a helper we've provided to easily load images
@@ -22,11 +23,18 @@ class Enemy {
     // Update the enemy's position, required method for game
     // Parameter: dt, a time delta between ticks
     update(dt) {
-        speed_Random += Math.random()*3;
-        speed_Random += speed_Random * dt;
-    
+        console.log(dt);
+        if(speed_Random < 700) {
+        speed_Random += 2;
+        }
+        if(speed_Random >= 700) {
+            speed_Random = 4;
+        }
+        speed_Random * dt;
+		speed_Random = Math.floor(speed_Random);
+		console.log(speed_Random);
         this.x = speed_Random;
-         Math.floor(speed_Random);
+         
         // You should multiply any movement by the dt parameter
         // which will ensure the game runs at the same speed for
         // all computers.
@@ -41,8 +49,8 @@ class Enemy {
 
 class Person {
     constructor() {
-        this.x = 1;
-        this.y = 3;
+        this.x = 101;
+        this.y = 404;
         // Variables applied to each of our instances go here,
         
         this.sprite = 'images/char-boy.png';
@@ -79,12 +87,13 @@ class Person {
 player = new Person(); 
 console.log(player);
  
-// set interval 
-setInterval(function makeNewEnemy(){ 
-    this.enemy = new Enemy();
-    allEnemies.push(enemy);
- }, 1000);
 
+enemy = new Enemy();
+allEnemies.push(enemy);
+    
+
+
+ 
 //allEnemies.push(enemy);
 console.log(allEnemies);
 
