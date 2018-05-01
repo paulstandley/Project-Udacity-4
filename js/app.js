@@ -65,7 +65,15 @@ class Enemy {
             }
             if(addingX_1 >= 500) {
                 addingX_1 = -100;
-
+                if(this.y  == 61) {
+                    this.y = 141;    
+                }
+                if(this.y == 141) {
+                    this.y = 221;
+				}
+				if(this.y == 221) {
+					this.y = 61;
+				}
             }
             addingX_1 += 1;
         }else if(counter_1 == 2){
@@ -83,7 +91,16 @@ class Enemy {
                 //this.x = speed_Random;
             }
             if(addingX_1 >= 500) {
-                addingX_1 = -100;
+				addingX_1 = -100;
+				if(this.y  == 61) {
+                    this.y = 141;    
+                }
+                if(this.y == 141) {
+                    this.y = 221;
+				}
+				if(this.y == 221) {
+					this.y = 61;
+				}
             }
             addingX_1 += 2;
         }
@@ -115,7 +132,8 @@ class Person {
     // Update, required method for game
     // Parameter: dt, a time delta between ticks
     update(dt) {
-    
+	
+		speed_Random_3 * dt;
     
         // You should multiply any movement by the dt parameter
         // which will ensure the game runs at the same speed for
