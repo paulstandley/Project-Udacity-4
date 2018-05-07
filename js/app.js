@@ -16,7 +16,7 @@ var enemyLastPos = 1;
 var tileArray;
 var tileCount_x = 0;
 var tileCount_y = 0;
-var delta_v_x = 1,delta_v_y = 1;
+var delta_v_x = 0,delta_v_y = 0;
 class Enemy {
     constructor() {
         this.width = 80;
@@ -155,8 +155,8 @@ class Enemy {
 class Person {
     constructor() {
 		pos_person = [[404],[404]];
-        //this.x = pos_person[0];
-        //this.y = pos_person[1];
+        this.x = pos_person[0];
+        this.y = pos_person[1];
         // Variables applied to each of our instances go here,
         this.personPosArray = [
 			[1,101,202,303,404],[1,101,202,303,404]
@@ -170,12 +170,13 @@ class Person {
 	
         speed_Random_3 * dt;
         
-
-        if(speed_Random_3 >= 500) {
-            this.x = delta_v_x;
-            this.y = delta_v_y;
+        this.x = delta_v_x;
+        this.y = delta_v_y;
+        if(speed_Random_3 >= 600) {
+            //this.x = delta_v_x;
+            //this.y = delta_v_y;
 // on screen display
-        }else if(speed_Random_3 <= 500) {
+        }else if(speed_Random_3 <= 600) {
             speed_Random_3 = -100;
 // border cases
         }
@@ -189,17 +190,20 @@ class Person {
 
     handleInput(evt) {
         if(evt == "left") {
-            this.x = delta_v_x += 100;
-            console.log(this.delta_v_x);
+            this.x = delta_v_x += -101;
+            console.log(evt+" delta  x "+delta_v_x);
         }
         if(evt == "right") {
-            this.x = delta_v_x += -100;
+            this.x = delta_v_x += 101;
+            console.log(evt+" delta x "+delta_v_x);
         }
         if(evt == "up") {
-            this.y = delta_v_y += 100;
+            this.y = delta_v_y += -80;
+            console.log(evt+" delta y "+delta_v_y);
         }
         if(evt == "down") {
-            this.y = delta_v_y =+ -100;
+            this.y = delta_v_y += 80;
+            console.log(evt+" delta y "+delta_v_y);
         }
         console.log(evt);
     }
