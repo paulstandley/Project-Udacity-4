@@ -16,7 +16,7 @@ var enemyLastPos = 1;
 var tileArray;
 var tileCount_x = 0;
 var tileCount_y = 0;
-
+var delta_v_x = 1,delta_v_y = 1;
 class Enemy {
     constructor() {
         this.width = 80;
@@ -24,9 +24,7 @@ class Enemy {
         addingX = Math.floor(Math.random()*500);
         pos_enemy = [[addingX] ,[61,141,221]];
 		// Variables applied to each of our instances go here,
-		console.log(pos_enemy);
-        console.log(addingX);
-        console.log(`counter_2 ${counter_2}`);
+		
 		if(counter_2 == 1) {
             this.y = 61;
             console.log(`counter_2 ${counter_2} and y ${this.y}`);
@@ -48,7 +46,7 @@ class Enemy {
         counter_2++;
     
         this.x = pos_enemy[0][addingX];
-        console.log(`counter_2 ${counter_2} and y ${this.y} and x ${this.x}`);    
+        //console.log(`counter_2 ${counter_2} and y ${this.y} and x ${this.x}`);    
         // we've provided one for you to get started
         // The image/sprite for our enemies, this uses
         // a helper we've provided to easily load images
@@ -60,8 +58,6 @@ class Enemy {
 		//console.log(this.tileArray);
 		//console.log(dt);
 		
-		
-
         speed_Random * dt;
         addingX_1 * dt;
         addingX_2 * dt;	
@@ -145,9 +141,6 @@ class Enemy {
             }
             addingX_1 += 0.5;
         }
-
-        
-
 		//console.log(speed_Random); 
         // You should multiply any movement by the dt parameter
         // which will ensure the game runs at the same speed for
@@ -164,8 +157,8 @@ class Enemy {
 class Person {
     constructor() {
 		pos_person = [[404],[404]];
-        this.x = pos_person[0];
-        this.y = pos_person[1];
+        //this.x = pos_person[0];
+        //this.y = pos_person[1];
         // Variables applied to each of our instances go here,
         this.personPosArray = [
 			[1,101,202,303,404],[1,101,202,303,404]
@@ -177,8 +170,18 @@ class Person {
     // Parameter: dt, a time delta between ticks
     update(dt, tileArray) {
 	
-		speed_Random_3 * dt;
-	
+        speed_Random_3 * dt;
+        
+
+        if(speed_Random_3 >= 500) {
+            this.x = delta_v_x;
+            this.y = delta_v_y;
+// on screen display
+        }else if(speed_Random_3 <= 500) {
+            speed_Random_3 = -100;
+// border cases
+        }
+        speed_Random_3 += 1;
 		
 
         // You should multiply any movement by the dt parameter
@@ -187,6 +190,19 @@ class Person {
     }
 
     handleInput(evt) {
+        if(evt == "left") {
+            this.delta_v_x += 100;
+            console.log(this.delta_v_x);
+        }
+        if(evt == "right") {
+            this.delta_v_x += -100;
+        }
+        if(evt == "up") {
+            this.delta_v_y += 100;
+        }
+        if(evt == "down") {
+            this.delta_v_y =+ -100;
+        }
         console.log(evt);
     }
     // Draw the enemy on the screen, required method for game
@@ -208,34 +224,30 @@ class Person {
 player = new Person(); 
 console.log(player);
  
-
 MakeEnemiesFunction();
 MakeEnemiesFunction();
 MakeEnemiesFunction();
 MakeEnemiesFunction();
-
-
-
-
  
 //allEnemies.push(enemy);
 console.log(...allEnemies);
-console.log();
-console.log(pos_enemy[1][0]);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
-document.addEventListener('keyup', function(e) {
+document.addEventListener('keyup', function(evt) {
     var allowedKeys = {
         37: 'left',
         38: 'up',
         39: 'right',
         40: 'down'
     };
-    player.handleInput(allowedKeys[e.keyCode]);
+    player.handleInput(allowedKeys[evt.keyCode]);
 });
+
 function MakeEnemiesFunction() {
 	enemy = new Enemy();
 	allEnemies.push(enemy);
 }
+
+
 
