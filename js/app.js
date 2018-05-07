@@ -152,8 +152,6 @@ class Enemy {
     }
 }
 
-
-
 class Person {
     constructor() {
 		pos_person = [[404],[404]];
@@ -191,17 +189,17 @@ class Person {
 
     handleInput(evt) {
         if(evt == "left") {
-            this.delta_v_x += 100;
+            this.x = delta_v_x += 100;
             console.log(this.delta_v_x);
         }
         if(evt == "right") {
-            this.delta_v_x += -100;
+            this.x = delta_v_x += -100;
         }
         if(evt == "up") {
-            this.delta_v_y += 100;
+            this.y = delta_v_y += 100;
         }
         if(evt == "down") {
-            this.delta_v_y =+ -100;
+            this.y = delta_v_y =+ -100;
         }
         console.log(evt);
     }
