@@ -157,6 +157,8 @@ class Person {
 		pos_person = [[404],[404]];
         this.x = pos_person[0];
         this.y = pos_person[1];
+        this.width = 60;
+        this.height = 70;
         // Variables applied to each of our instances go here,
         this.personPosArray = [
 			[1,101,202,303,404],[1,101,202,303,404]
@@ -189,14 +191,47 @@ class Person {
     }
 
     handleInput(evt) {
-        if(evt == "left") {
-            this.x = delta_v_x += -101;
-            console.log(evt+" delta  x "+delta_v_x);
+        console.log(delta_v_x >= 101);
+        console.log(delta_v_x <= 404);
+/*    left and right controls and border detection  */
+// set delta v x to correct for number drift         
+        if(delta_v_x < 0) {
+            delta_v_x = 0;
+            this.x = delta_v_x;
+        }else if(delta_v_x >= 0 && delta_v_x <= 404) {
+            if(evt == "left") {
+                if(delta_v_x == 0) {
+// dont do anything
+                }else{
+                this.x = delta_v_x += -101;
+                console.log(evt+" delta  x "+delta_v_x);
+                }
+            }
+            if(evt == "right") {
+                if(delta_v_x == 404) {
+// dont do anything
+                }else{
+                this.x = delta_v_x += 101;
+                console.log(evt+" delta x "+delta_v_x);
+                }
+            }
+// set delta v x back to max             
+        }else if(delta_v_x > 404) {
+            delta_v_x = 404;
+            this.x = delta_v_x;
         }
-        if(evt == "right") {
-            this.x = delta_v_x += 101;
-            console.log(evt+" delta x "+delta_v_x);
-        }
+        /*else{
+            if(delta_v_x <= 0) {
+                delta_v_x = 0;
+                this.x = delta_v_x;
+            }else if(delta_v_x >= 404) {
+                delta_v_x += -101;
+                this.x = delta_v_x;
+            }
+        }*/
+            
+            
+        
         if(evt == "up") {
             this.y = delta_v_y += -80;
             console.log(evt+" delta y "+delta_v_y);
@@ -206,6 +241,7 @@ class Person {
             console.log(evt+" delta y "+delta_v_y);
         }
         console.log(evt);
+
     }
     // Draw the enemy on the screen, required method for game
     render() {
