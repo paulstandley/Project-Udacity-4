@@ -17,6 +17,7 @@ var tileArray;
 var tileCount_x = 0;
 var tileCount_y = 0;
 var delta_v_x = 0,delta_v_y = 0;
+var playerScore = 0,playersLives = 3; 
 class Enemy {
     constructor() {
         this.width = 80;
@@ -220,29 +221,44 @@ class Person {
             delta_v_x = 404;
             this.x = delta_v_x;
         }
-        /*else{
-            if(delta_v_x <= 0) {
-                delta_v_x = 0;
-                this.x = delta_v_x;
-            }else if(delta_v_x >= 404) {
-                delta_v_x += -101;
-                this.x = delta_v_x;
-            }
-        }*/
             
-            
-        
-        if(evt == "up") {
-            this.y = delta_v_y += -80;
-            console.log(evt+" delta y "+delta_v_y);
-        }
-        if(evt == "down") {
-            this.y = delta_v_y += 80;
-            console.log(evt+" delta y "+delta_v_y);
-        }
-        console.log(evt);
+	   /*    up and down controls and border detection  */
+	   
+// set delta v y to correct for number drift         
+		if(delta_v_y < 0) {
+		    delta_v_y = 0;
+		    this.y = delta_v_y;
+		}else if(delta_v_y >= 0 && delta_v_y <= 400) {
+		    if(evt == "up") {
+		        if(delta_v_y == 0) {					
+		// score or win 
+// display 					
+					playerScore++;
+					if(playerScore == 9) {
+// reset game make a modal 
+					}						
+		        }else{
+		        this.y = delta_v_y += -80;
+		        console.log(evt+" delta  y "+delta_v_y);
+		        }
+		    }
+		    if(evt == "down") {
+		        if(delta_v_y == 400) {	
+// dont do anything 
+		        }else{
+		        this.y = delta_v_y += 80;
+		        console.log(evt+" delta y "+delta_v_y);
+		        }
+		    }
+		// set delta v y back to max             
+		}else if(delta_v_y > 400) {
+		    delta_v_y = 400;
+		    this.y = delta_v_y;
+		} 
 
+/*          */
     }
+    
     // Draw the enemy on the screen, required method for game
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
