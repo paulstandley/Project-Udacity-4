@@ -12,9 +12,12 @@ Project Brake down
 
 ### The game functions correctly and runs error free
 
-Player can not move off screen
-Vehicles cross the screen
+~~Player can not move off screen~~
+
+~~Vehicles cross the screen~~
+
 Vehicle-player collisions happen logically (not too early or too late)
+
 Vehicle-player collision resets the game
 Something happens when player wins
 
@@ -54,12 +57,12 @@ README.md should contain instructions on how to load and play the game (you will
 
 Inside the app.js file, you will need to implement the Player and the Enemy classes, using Object-Oriented JavaScript. Part of the code for the Enemy is provided to you, and you will 
 
-## need to complete the following:
+## ~~need to complete the following:~~
 
-The Enemy function, which initiates the Enemy by:
+~~The Enemy function, which initiates the Enemy by:
 Loading the image by setting this.sprite to the appropriate image in the image folder (already provided)
 Setting the Enemy initial location (you need to implement)
-Setting the Enemy speed (you need to implement)
+Setting the Enemy speed (you need to implement)~~
 
 ### The update method for the Enemy
 

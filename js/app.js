@@ -233,6 +233,7 @@ class Person {
 		        if(delta_v_y == 0) {					
 		// score or win 
 // display 					
+                    
 					playerScore++;
 					if(playerScore == 9) {
 // reset game make a modal 

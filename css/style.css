@@ -1,8 +1,12 @@
 body {
     text-align: center;
-    background-color: chocolate;
+    background-color: rgba(210, 105, 30, 0.418);
     background-blend-mode: color-dodge;
+    padding-top: 6rem;
 }
 canvas {
     background-color: antiquewhite;
+    border: 2rem solid rgb(165, 119, 211);
+    border-radius: 13px;
+    box-shadow: 0.4em 0.4em rgb(111, 133, 201); 
 }
