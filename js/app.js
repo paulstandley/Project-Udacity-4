@@ -223,17 +223,21 @@ class Person {
         }
             
 	   /*    up and down controls and border detection  */
-	   
+       	   
 // set delta v y to correct for number drift         
 		if(delta_v_y < 0) {
-		    delta_v_y = 0;
-		    this.y = delta_v_y;
+// score or win            
+            //delta_v_y = 0;
+            
+		    //this.y = delta_v_y + 400;
 		}else if(delta_v_y >= 0 && delta_v_y <= 400) {
 		    if(evt == "up") {
 		        if(delta_v_y == 0) {					
-		// score or win 
-// display 					
-                    
+        // score or win 
+                    this.y = delta_v_y + 400;
+                    console.log("y pos " + this.y);
+                    console.log(allEnemies[0].x);// value for x updated
+                    console.log(playerScore);
 					playerScore++;
 					if(playerScore == 9) {
 // reset game make a modal 
