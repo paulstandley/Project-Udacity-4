@@ -28,21 +28,21 @@ class Enemy {
 		
 		if(counter_2 == 1) {
             this.y = 61;
-            console.log(`counter_2 ${counter_2} and y ${this.y}`);
+            
         }
 		if(counter_2 == 2) {
             this.y = 141;
-            console.log(`counter_2 ${counter_2} and y ${this.y}`);
+            
 		}
 		if(counter_2 == 3) {
             this.y = 221;
-            console.log(`counter_2 ${counter_2} and y ${this.y}`);
+            
 		}
 		if(counter_2 == 4) {
 			counter_2 = 1;
 			random_location = Math.floor(Math.random() * 3);
             this.y = pos_enemy[1][random_location];
-            console.log(`counter_2 ${counter_2} and y ${this.y}`);
+            
 		}
         counter_2++;
     
@@ -146,7 +146,21 @@ class Enemy {
         // You should multiply any movement by the dt parameter
         // which will ensure the game runs at the same speed for
         // all computers.
+        this.enemyCollMethod();
+        
     }
+    enemyCollMethod() {
+        
+        if (player.x >= (this.x + this.width) || (player.x + player.width.x) <= this.x || player.y >= (this.y + this.height) || (player.y + player.height) <= this.y) {
+            //console.log("booom");
+        }
+        else {
+
+            console.log("bang");
+            //alert(player.x);
+        }
+    }
+
     // Draw the enemy on the screen, required method for game
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
@@ -192,8 +206,7 @@ class Person {
     }
 
     handleInput(evt) {
-        console.log(delta_v_x >= 101);
-        console.log(delta_v_x <= 404);
+        
 /*    left and right controls and border detection  */
 // set delta v x to correct for number drift         
         if(delta_v_x < 0) {
@@ -205,7 +218,7 @@ class Person {
 // dont do anything
                 }else{
                 this.x = delta_v_x += -101;
-                console.log(evt+" delta  x "+delta_v_x);
+                
                 }
             }
             if(evt == "right") {
@@ -213,7 +226,7 @@ class Person {
 // dont do anything
                 }else{
                 this.x = delta_v_x += 101;
-                console.log(evt+" delta x "+delta_v_x);
+                
                 }
             }
 // set delta v x back to max             
@@ -227,7 +240,7 @@ class Person {
 // set delta v y to correct for number drift         
 		if(delta_v_y < 0) {
 // score or win            
-            //delta_v_y = 0;
+            delta_v_y = 0;
             
 		    //this.y = delta_v_y + 400;
 		}else if(delta_v_y >= 0 && delta_v_y <= 400) {
@@ -235,16 +248,13 @@ class Person {
 		        if(delta_v_y == 0) {					
         // score or win 
                     this.y = delta_v_y + 400;
-                    console.log("y pos " + this.y);
-                    console.log(allEnemies[0].x);// value for x updated
-                    console.log(playerScore);
 					playerScore++;
 					if(playerScore == 9) {
 // reset game make a modal 
 					}						
 		        }else{
 		        this.y = delta_v_y += -80;
-		        console.log(evt+" delta  y "+delta_v_y);
+		
 		        }
 		    }
 		    if(evt == "down") {
@@ -252,7 +262,7 @@ class Person {
 // dont do anything 
 		        }else{
 		        this.y = delta_v_y += 80;
-		        console.log(evt+" delta y "+delta_v_y);
+		        
 		        }
 		    }
 		// set delta v y back to max             
@@ -261,9 +271,23 @@ class Person {
 		    this.y = delta_v_y;
 		} 
 
-/*          */
+/*    detct enemy   */
+        this.personCollMethod();
     }
     
+    personCollMethod() {
+        for (let i = 0; i < allEnemies.length; i++) {
+            
+            if (allEnemies[i].x >= (this.x + this.width) || (allEnemies[i].x + allEnemies[i].width) <= this.x || allEnemies[i].y >= (this.y + this.height) || (allEnemies[i].y + allEnemies[i].height) <= this.y) {
+                
+            }
+            else {
+                console.log("bang");
+                //alert(`this.x ${this.x} this.y ${this.y}`);
+            }
+        }
+    }
+
     // Draw the enemy on the screen, required method for game
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
@@ -281,15 +305,15 @@ class Person {
 // Place the player object in a variable called player
 //var enemy = new Enemy();
 player = new Person(); 
-console.log(player);
+
  
 MakeEnemiesFunction();
 MakeEnemiesFunction();
 MakeEnemiesFunction();
-MakeEnemiesFunction();
- 
+
+
 //allEnemies.push(enemy);
-console.log(...allEnemies);
+
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
