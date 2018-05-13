@@ -2,21 +2,15 @@ var allEnemies = [];
 var player;
 var speed_Random = 1,speed_Random_1 = 1,speed_Random_2 = 1,speed_Random_3 = 1;
 var random_location;
-var pos_enemy = [];
-var pos_person = [];
-var addingX = 1;
-var addingX_1 = 1;
-var addingX_2 = 1;
-var counter_1 = 1;
-var counter_2 = 1;
-var width = 1;
-var height = 1;
+var pos_enemy = [], pos_person = [];
+var addingX = 1, addingX_1 = 1, addingX_2 = 1, addingX_3 = 1, addingX_4 = 1, addingX_5 = 1, addingX_6 = 1;
+var counter_1 = 1, counter_2 = 1, counter_3 = 1;
+var width = 1, height = 1;
 var enemyCurrentPos = [];
 var enemyLastPos = 1;
 var tileArray;
-var tileCount_x = 0;
-var tileCount_y = 0;
-var delta_v_x = 0,delta_v_y = 0;
+var tileCount_x = 0, tileCount_y = 0;
+var delta_v_x = 202,delta_v_y = 400;
 var playerScore = 0,playersLives = 3; 
 class Enemy {
     constructor() {
@@ -28,21 +22,17 @@ class Enemy {
 		
 		if(counter_2 == 1) {
             this.y = 61;
-            
         }
 		if(counter_2 == 2) {
             this.y = 141;
-            
 		}
 		if(counter_2 == 3) {
             this.y = 221;
-            
 		}
 		if(counter_2 == 4) {
 			counter_2 = 1;
 			random_location = Math.floor(Math.random() * 3);
             this.y = pos_enemy[1][random_location];
-            
 		}
         counter_2++;
     
@@ -56,107 +46,85 @@ class Enemy {
     // Update the enemy's position, required method for game
     // Parameter: dt, a time delta between ticks
     update(dt, tileArray) {
-		//console.log(this.tileArray);
-		//console.log(dt);
-		
+	
         speed_Random * dt;
+        speed_Random_2 * dt;  
         addingX_1 * dt;
         addingX_2 * dt;	
+        addingX_3 * dt;
+        addingX_4 * dt;
+        addingX_5 * dt;
+        addingX_6 * dt;
 
-		if(speed_Random <= 600) {
-			
-			//this.x = speed_Random;		
-        }
-        if(speed_Random >= 600) {
-            speed_Random = -100;
-        }
-        speed_Random += 1;
-		
-// speed
-		if(speed_Random_2 <= 600) {
-			
-			//this.x = speed_Random;		
-        }
-        if(speed_Random_2 >= 600) {
-            speed_Random_2 = -100;
-        }
-        speed_Random_2 += 0.75;
+        this.displayMethod();
 
-        if(counter_1 == 1){
-            counter_1++;
-            if(speed_Random_2 <= 600 || speed_Random_2 >= -100) {
-                if(this.y == 61) {
-                    
-                    this.x = addingX_1;
-                    
-                }
-                if(this.y == 141) {
-                    this.x = speed_Random;
-                }
-                if(this.y == 221) {
-                
-                    this.x = speed_Random_2;
-                
-                }
-            //    this.x = addingX_1;
-            }
-            if(addingX_1 >= 600 || addingX_1 <= -100) {
-                //addingX_1 = -100;
-                if(this.y  == 61) {
-                    
-                }
-                if(this.y == 141) {
-            
-				}
-				if(this.y == 221) {
-					
-				}
-            }
-			addingX_1 += 0.5;
-			
-        }else if(counter_1 == 2){
-            counter_1--;
-            if(addingX_1 <= 600 || addingX_1 >= -100) {
-                if(this.y == 61) {
-                    this.x = addingX_1;
-                }
-                if(this.y == 141) {
-                    this.x = speed_Random;
-                }
-                if(this.y == 221) {
-                    this.x = speed_Random_2;
-                }
-                //this.x = speed_Random;
-            }
-            if(addingX_1 >= 600) {
-				addingX_1 = -100;
-				if(this.y  == 61) {
-              
-                }
-                if(this.y == 141) {
-                    
-				}
-				if(this.y == 221) {
-					
-				}
-            }
-            addingX_1 += 0.5;
-        }
-		//console.log(speed_Random); 
-        // You should multiply any movement by the dt parameter
-        // which will ensure the game runs at the same speed for
-        // all computers.
-        this.enemyCollMethod();
-        
+        this.enemyCollMethod();        
     }
+
+    displayMethod() {
+        if(counter_3 == 1) {
+        if (addingX_1 <= 500 || addingX_1 >= -100) {
+            this.x = addingX_1;
+            if (addingX_1 >= 500) {
+                addingX_1 = -100;
+            }
+            addingX_1 += 4;
+        }
+    }else if(counter_3 == 2) {
+        if (addingX_2 <= 600 || addingX_2 >= -300) {
+            this.x = addingX_2;
+            if (addingX_2 >= 600) {
+                addingX_2 = -300;
+            }
+            addingX_2 += 4.5;
+        }
+    }else if(counter_3 == 3) {
+        if (addingX_3 <= 700 || addingX_3 >= -400) {
+            this.x = addingX_3;
+            if (addingX_3 >= 700) {
+                addingX_3 = -400;
+            }
+            addingX_3 += 3;
+        }
+    }else if(counter_3 == 4) {
+        if (addingX_4 <= 650 || addingX_4 >= -150) {
+            this.x = addingX_4;
+            if (addingX_4 >= 650) {
+                addingX_4 = -150;
+            }
+            addingX_4 += 2;
+        }
+    }else if(counter_3 == 5) {
+        if (addingX_5 <= 550 || addingX_5 >= -300) {
+            this.x = addingX_5;
+            if (addingX_5 >= 550) {
+                addingX_5 = -300;
+            }
+            addingX_5 += 3.5;
+        }
+    }else if(counter_3 == 6) {
+        if (addingX_6 <= 600 || addingX_6 >= -200) {
+            this.x = addingX_6;
+            if (addingX_6 >= 600) {
+                addingX_6 = -200;
+            }
+            addingX_6 += 2.5;
+        }
+    }
+    counter_3++;
+    if(counter_3 > 6) {
+        counter_3 = 1;
+    }
+    }
+
     enemyCollMethod() {
         
-        if (player.x >= (this.x + this.width) || (player.x + player.width.x) <= this.x || player.y >= (this.y + this.height) || (player.y + player.height) <= this.y) {
+        if (false) {
             //console.log("booom");
         }
         else {
 
-            console.log("bang");
+            //console.log("bang");
             //alert(player.x);
         }
     }
@@ -183,103 +151,87 @@ class Person {
     }
     // Update, required method for game
     // Parameter: dt, a time delta between ticks
-    update(dt, tileArray) {
-	
-        speed_Random_3 * dt;
+    update(dt) {
         
         this.x = delta_v_x;
         this.y = delta_v_y;
-        if(speed_Random_3 >= 600) {
-            //this.x = delta_v_x;
-            //this.y = delta_v_y;
-// on screen display
-        }else if(speed_Random_3 <= 600) {
-            speed_Random_3 = -100;
-// border cases
-        }
-        speed_Random_3 += 1;
-		
-
-        // You should multiply any movement by the dt parameter
-        // which will ensure the game runs at the same speed for
-        // all computers.
+        
     }
 
-    handleInput(evt) {
-        
-/*    left and right controls and border detection  */
-// set delta v x to correct for number drift         
-        if(delta_v_x < 0) {
-            delta_v_x = 0;
-            this.x = delta_v_x;
-        }else if(delta_v_x >= 0 && delta_v_x <= 404) {
-            if(evt == "left") {
-                if(delta_v_x == 0) {
-// dont do anything
-                }else{
-                this.x = delta_v_x += -101;
-                
-                }
-            }
-            if(evt == "right") {
-                if(delta_v_x == 404) {
-// dont do anything
-                }else{
-                this.x = delta_v_x += 101;
-                
-                }
-            }
-// set delta v x back to max             
-        }else if(delta_v_x > 404) {
-            delta_v_x = 404;
-            this.x = delta_v_x;
-        }
-            
-	   /*    up and down controls and border detection  */
-       	   
-// set delta v y to correct for number drift         
-		if(delta_v_y < 0) {
-// score or win            
-            delta_v_y = 0;
-            
-		    //this.y = delta_v_y + 400;
-		}else if(delta_v_y >= 0 && delta_v_y <= 400) {
-		    if(evt == "up") {
-		        if(delta_v_y == 0) {					
-        // score or win 
-                    this.y = delta_v_y + 400;
-					playerScore++;
-					if(playerScore == 9) {
-// reset game make a modal 
-					}						
-		        }else{
-		        this.y = delta_v_y += -80;
-		
-		        }
-		    }
-		    if(evt == "down") {
-		        if(delta_v_y == 400) {	
-// dont do anything 
-		        }else{
-		        this.y = delta_v_y += 80;
-		        
-		        }
-		    }
-		// set delta v y back to max             
-		}else if(delta_v_y > 400) {
-		    delta_v_y = 400;
-		    this.y = delta_v_y;
-		} 
-
+    handleInput(evt) {    
+/* up down left and right controls and border detection  */
+       
+        this.playerMoveMethod(evt); 
 /*    detct enemy   */
         this.personCollMethod();
     }
-    
+    playerMoveMethod(evt) {
+        if (delta_v_x < 0) {
+            delta_v_x = 0;
+            this.x = delta_v_x;
+        }
+        else if (delta_v_x >= 0 && delta_v_x <= 404) {
+            if (evt == "left") {
+                if (delta_v_x == 0) {
+                    // dont do anything
+                }
+                else {
+                    this.x = delta_v_x += -101;
+                }
+            }
+            if (evt == "right") {
+                if (delta_v_x == 404) {
+                    // dont do anything
+                }
+                else {
+                    this.x = delta_v_x += 101;
+                }
+            }
+            // set delta v x back to max             
+        }
+        else if (delta_v_x > 404) {
+            delta_v_x = 404;
+            this.x = delta_v_x;
+        }
+        /*    up and down controls and border detection  */        
+        if (delta_v_y < 0) {
+            // score or win            
+            delta_v_y = 0;
+            //this.y = delta_v_y + 400;
+        }
+        else if (delta_v_y >= 0 && delta_v_y <= 400) {
+            if (evt == "up") {
+                if (delta_v_y == 0) {
+                    // score or win 
+                    this.y = delta_v_y + 400;
+                    playerScore++;
+                    if (playerScore == 9) {
+                        // reset game make a modal 
+                    }
+                }
+                else {
+                    this.y = delta_v_y += -80;
+                }
+            }
+            if (evt == "down") {
+                if (delta_v_y == 400) {
+                    // dont do anything 
+                }
+                else {
+                    this.y = delta_v_y += 80;
+                }
+            }
+            // set delta v y back to max             
+        }
+        else if (delta_v_y > 400) {
+            delta_v_y = 400;
+            this.y = delta_v_y;
+        }
+    }
+
     personCollMethod() {
-        for (let i = 0; i < allEnemies.length; i++) {
-            
+        for (let i = 0; i < allEnemies.length; i++) {       
             if (allEnemies[i].x >= (this.x + this.width) || (allEnemies[i].x + allEnemies[i].width) <= this.x || allEnemies[i].y >= (this.y + this.height) || (allEnemies[i].y + allEnemies[i].height) <= this.y) {
-                
             }
             else {
                 console.log("bang");
@@ -293,27 +245,22 @@ class Person {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
 }
-
-
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
-
-
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 //var enemy = new Enemy();
 player = new Person(); 
 
- 
 MakeEnemiesFunction();
 MakeEnemiesFunction();
 MakeEnemiesFunction();
-
-
+MakeEnemiesFunction();
+MakeEnemiesFunction();
+MakeEnemiesFunction();
 //allEnemies.push(enemy);
-
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
