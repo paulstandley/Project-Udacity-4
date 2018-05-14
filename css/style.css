@@ -3,8 +3,8 @@ body {
     background-color: rgba(190, 110, 53, 0.4);
     border: 1rem ridge rgba(84, 85, 49, 0.822);
     box-shadow: 0 0 0 22vw rgba(53, 41, 9, 0.5);
-    margin: 1rem 20%;
-    padding-bottom: 1rem;
+    margin: 1rem 10%;
+    padding-bottom: 0.6rem;
 }
 canvas {
     background-color: antiquewhite;
@@ -28,4 +28,21 @@ h2 {
     color: rgb(250, 246, 246);
     text-shadow: 0.2rem 0.2rem 0 rgba(136, 170, 233, 0.733), 0.4rem 0.4rem 0.1rem rgba(2, 43, 119, 0.931);
     font-size: 3rem;
+}
+h3 {
+    display: inline;
+    font-size: 2rem;
+    color: rgb(250, 246, 246);
+    text-shadow: 0.1rem 0.1rem 0 rgba(136, 170, 233, 0.733), 0.2rem 0.2rem 0.05rem rgba(2, 43, 119, 0.931);
+}
+#displayScore {
+    
+    color: blue;
+    
+}
+
+#displayLives {
+    
+    color: crimson;
+
 }

@@ -10,7 +10,7 @@ Project Brake down
 
 ## what needs doing 
 
-### The game functions correctly and runs error free
+### ~~The game functions correctly and runs error free~~
 
 ~~Player can not move off screen~~
 
@@ -20,12 +20,7 @@ Project Brake down
 
 ~~Vehicle-player collision resets the game~~
 
-Something happens when player wins
-
-### Game objects (player and vehicles) are implemented using JavaScript object-oriented programming features.
-
-Frogger Game Description
-Your implementation must at minimum follow the basic functionality, but you can add additional optional functionality to your game, if you wish.
+~~Something happens when player wins~~
 
 ## ~~Basic Functionality~~
 

@@ -11,7 +11,9 @@ var enemyLastPos = 1;
 var tileArray;
 var tileCount_x = 0, tileCount_y = 0;
 var delta_v_x = 202,delta_v_y = 400;
-var playerScore = 0,playersLives = 10; 
+var playerScore = 0,playersLives = 100; 
+var h3score = document.getElementById("displayScore");
+var h3lives = document.getElementById("displayLives");
 
 class Enemy {
     constructor() {
@@ -62,7 +64,20 @@ class Enemy {
 
         this.displayMethod();
 
-        this.enemyCollMethod();        
+        this.enemyCollMethod();
+        
+        this.displayOnPage();
+    }
+
+    displayOnPage() {
+        h3lives.innerText = playersLives;
+        h3score.innerText = playerScore;
+        if(playersLives <= 0) {
+            reLoadGame();
+        }
+        if(playerScore >= 10) {
+            reLoadGame();
+        }
     }
 
     displayMethod() {
@@ -127,19 +142,19 @@ class Enemy {
             
             if(player.y == 80  && allEnemies[crash].y == 61) {
                 if(allEnemies[crash].x <= player.x + 40 && allEnemies[crash].x >= player.x - 40) {
-                    delta_v_x = 220;
+                    delta_v_x = 202;
                     delta_v_y = 400;
                     playersLives--;
                 }
             }else if(player.y == 160 && allEnemies[crash].y == 141) {
                 if(allEnemies[crash].x <= player.x + 40 && allEnemies[crash].x >= player.x - 40) {
-                    delta_v_x = 220;
+                    delta_v_x = 202;
                     delta_v_y = 400;
                     playersLives--;
                 }
             }else if(player.y == 240 && allEnemies[crash].y == 221) {
                 if(allEnemies[crash].x <= player.x + 40 && allEnemies[crash].x >= player.x - 40) {
-                    delta_v_x = 220;
+                    delta_v_x = 202;
                     delta_v_y = 400;
                     playersLives--;
                 }
@@ -244,7 +259,7 @@ class Person {
             if (allEnemies[i].x >= (this.x + this.width) || (allEnemies[i].x + allEnemies[i].width) <= this.x || allEnemies[i].y >= (this.y + this.height) || (allEnemies[i].y + allEnemies[i].height) <= this.y) {
             }
             else {
-                delta_v_x = 220;
+                delta_v_x = 202;
                 delta_v_y = 400;
                 playersLives--;
             }
