@@ -11,7 +11,8 @@ var enemyLastPos = 1;
 var tileArray;
 var tileCount_x = 0, tileCount_y = 0;
 var delta_v_x = 202,delta_v_y = 400;
-var playerScore = 0,playersLives = 3; 
+var playerScore = 0,playersLives = 10; 
+
 class Enemy {
     constructor() {
         this.width = 80;
@@ -29,8 +30,11 @@ class Enemy {
 		if(counter_2 == 3) {
             this.y = 221;
 		}
-		if(counter_2 == 4) {
-			counter_2 = 1;
+		if(counter_2 >= 4 && counter_2 <= 6) {
+            
+            if(counter_2 == 6) { 
+                counter_2 = 1;
+            }
 			random_location = Math.floor(Math.random() * 3);
             this.y = pos_enemy[1][random_location];
 		}
@@ -68,7 +72,7 @@ class Enemy {
             if (addingX_1 >= 500) {
                 addingX_1 = -100;
             }
-            addingX_1 += 4;
+            addingX_1 += 5;
         }
     }else if(counter_3 == 2) {
         if (addingX_2 <= 600 || addingX_2 >= -300) {
@@ -84,31 +88,31 @@ class Enemy {
             if (addingX_3 >= 700) {
                 addingX_3 = -400;
             }
-            addingX_3 += 3;
+            addingX_3 += 4;
         }
     }else if(counter_3 == 4) {
-        if (addingX_4 <= 650 || addingX_4 >= -150) {
+        if (addingX_4 <= 950 || addingX_4 >= -150) {
             this.x = addingX_4;
-            if (addingX_4 >= 650) {
+            if (addingX_4 >= 950) {
                 addingX_4 = -150;
             }
-            addingX_4 += 2;
+            addingX_4 += 5.5;
         }
     }else if(counter_3 == 5) {
-        if (addingX_5 <= 550 || addingX_5 >= -300) {
+        if (addingX_5 <= 850 || addingX_5 >= -300) {
             this.x = addingX_5;
-            if (addingX_5 >= 550) {
+            if (addingX_5 >= 850) {
                 addingX_5 = -300;
             }
             addingX_5 += 3.5;
         }
     }else if(counter_3 == 6) {
-        if (addingX_6 <= 600 || addingX_6 >= -200) {
+        if (addingX_6 <= 800 || addingX_6 >= -200) {
             this.x = addingX_6;
-            if (addingX_6 >= 600) {
+            if (addingX_6 >= 800) {
                 addingX_6 = -200;
             }
-            addingX_6 += 2.5;
+            addingX_6 += 3;
         }
     }
     counter_3++;
@@ -118,14 +122,28 @@ class Enemy {
     }
 
     enemyCollMethod() {
-        
-        if (false) {
-            //console.log("booom");
-        }
-        else {
 
-            //console.log("bang");
-            //alert(player.x);
+        for(let crash in allEnemies) {
+            
+            if(player.y == 80  && allEnemies[crash].y == 61) {
+                if(allEnemies[crash].x <= player.x + 40 && allEnemies[crash].x >= player.x - 40) {
+                    delta_v_x = 220;
+                    delta_v_y = 400;
+                    playersLives--;
+                }
+            }else if(player.y == 160 && allEnemies[crash].y == 141) {
+                if(allEnemies[crash].x <= player.x + 40 && allEnemies[crash].x >= player.x - 40) {
+                    delta_v_x = 220;
+                    delta_v_y = 400;
+                    playersLives--;
+                }
+            }else if(player.y == 240 && allEnemies[crash].y == 221) {
+                if(allEnemies[crash].x <= player.x + 40 && allEnemies[crash].x >= player.x - 40) {
+                    delta_v_x = 220;
+                    delta_v_y = 400;
+                    playersLives--;
+                }
+            }
         }
     }
 
@@ -194,20 +212,12 @@ class Person {
             this.x = delta_v_x;
         }
         /*    up and down controls and border detection  */        
-        if (delta_v_y < 0) {
-            // score or win            
-            delta_v_y = 0;
-            //this.y = delta_v_y + 400;
-        }
-        else if (delta_v_y >= 0 && delta_v_y <= 400) {
+        
+        if (delta_v_y >= 0 && delta_v_y <= 400) {
             if (evt == "up") {
-                if (delta_v_y == 0) {
-                    // score or win 
-                    this.y = delta_v_y + 400;
+                if (delta_v_y == 80) {
+                    delta_v_y = 400;
                     playerScore++;
-                    if (playerScore == 9) {
-                        // reset game make a modal 
-                    }
                 }
                 else {
                     this.y = delta_v_y += -80;
@@ -234,8 +244,9 @@ class Person {
             if (allEnemies[i].x >= (this.x + this.width) || (allEnemies[i].x + allEnemies[i].width) <= this.x || allEnemies[i].y >= (this.y + this.height) || (allEnemies[i].y + allEnemies[i].height) <= this.y) {
             }
             else {
-                console.log("bang");
-                //alert(`this.x ${this.x} this.y ${this.y}`);
+                delta_v_x = 220;
+                delta_v_y = 400;
+                playersLives--;
             }
         }
     }
@@ -279,5 +290,7 @@ function MakeEnemiesFunction() {
 	allEnemies.push(enemy);
 }
 
-
+function reLoadGame() {
+    window.location.reload(false);
+}
 
