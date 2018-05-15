@@ -14,7 +14,7 @@ var delta_v_x = 202,delta_v_y = 400;
 var playerScore = 0,playersLives = 100; 
 var h3score = document.getElementById("displayScore");
 var h3lives = document.getElementById("displayLives");
-
+var fullbodydiv = document.getElementById("fullBody");
 class Enemy {
     constructor() {
         this.width = 80;
@@ -73,10 +73,12 @@ class Enemy {
         h3lives.innerText = playersLives;
         h3score.innerText = playerScore;
         if(playersLives <= 0) {
-            reLoadGame();
+            fullbodydiv.innerHTML = `<h2 id="h2lost">You got dead</h2>`; 
+            setTimeout(reLoadGame(), 5000);
         }
         if(playerScore >= 10) {
-            reLoadGame();
+            fullbodydiv.innerHTML = `<h2 id="h2win">Well Done</h2>`;
+            setTimeout(reLoadGame(), 5000);s
         }
     }
 
@@ -195,7 +197,7 @@ class Person {
 /* up down left and right controls and border detection  */
        
         this.playerMoveMethod(evt); 
-/*    detct enemy   */
+/*    detect enemy   */
         this.personCollMethod();
     }
     playerMoveMethod(evt) {

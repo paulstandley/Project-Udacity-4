@@ -31,18 +31,21 @@ h2 {
 }
 h3 {
     display: inline;
-    font-size: 2rem;
+    padding-left: 1.4rem;
+    font-size: 2.2rem;
     color: rgb(250, 246, 246);
     text-shadow: 0.1rem 0.1rem 0 rgba(136, 170, 233, 0.733), 0.2rem 0.2rem 0.05rem rgba(2, 43, 119, 0.931);
 }
 #displayScore {
-    
-    color: blue;
-    
+    padding-left: 0.3rem;
+    color: crimson;
 }
 
 #displayLives {
-    
+    padding-left: 0.3rem;
     color: crimson;
+}
 
+#per {
+    padding-left: 0;
 }
