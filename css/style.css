@@ -1,8 +1,8 @@
 body {
     text-align: center;
-    background-color: rgba(190, 110, 53, 0.4);
-    border: 1rem ridge rgba(84, 85, 49, 0.822);
-    box-shadow: 0 0 0 22vw rgba(53, 41, 9, 0.4);
+    background-color: rgba(179, 96, 37, 0.6);
+    border: 1rem ridge rgba(84, 85, 49, 0.8);
+    box-shadow: 0 0 0 22vw rgba(43, 33, 5, 0.5);
     margin: 1rem 10%;
     padding-bottom: 0.6rem;
 }
@@ -23,6 +23,7 @@ h2 {
     text-shadow: 0.2rem 0.2rem 0 rgba(136, 170, 233, 0.733), 0.4rem 0.4rem 0.1rem rgba(2, 43, 119, 0.931);
     font-size: 3rem;
 }
+
 h3 {
     display: inline;
     padding-left: 1.4rem;
@@ -30,14 +31,25 @@ h3 {
     color: rgb(250, 246, 246);
     text-shadow: 0.1rem 0.1rem 0 rgba(136, 170, 233, 0.733), 0.2rem 0.2rem 0.05rem rgba(2, 43, 119, 0.931);
 }
+
+p {
+    display: inline;
+}
+
 #displayScore {
     padding-left: 0.3rem;
     color: crimson;
+    font-size: 2.2rem;
+    font-weight: 900;
+    text-shadow: 0.1rem 0.1rem 0 rgba(136, 170, 233, 0.733), 0.2rem 0.2rem 0.05rem rgba(2, 43, 119, 0.931);
 }
 
 #displayLives {
     padding-left: 0.3rem;
     color: crimson;
+    font-size: 2.2rem;
+    font-weight: 900;
+    text-shadow: 0.1rem 0.1rem 0 rgba(136, 170, 233, 0.733), 0.2rem 0.2rem 0.05rem rgba(2, 43, 119, 0.931);
 }
 
 #per {
