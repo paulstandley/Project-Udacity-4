@@ -2,7 +2,7 @@ body {
     text-align: center;
     background-color: rgba(190, 110, 53, 0.4);
     border: 1rem ridge rgba(84, 85, 49, 0.822);
-    box-shadow: 0 0 0 22vw rgba(53, 41, 9, 0.5);
+    box-shadow: 0 0 0 22vw rgba(53, 41, 9, 0.4);
     margin: 1rem 10%;
     padding-bottom: 0.6rem;
 }
@@ -11,13 +11,7 @@ canvas {
     border: 2rem solid rgba(167, 127, 111, 0.788);
     border-radius: 13px; 
 }
-.full_body_modal {
-    background: linear-gradient(rgba(230, 132, 132, 0.705), rgba(156, 134, 114, 0.671));
-    margin: 0 20%;
-    padding: 10% 10%;
-    /* this is code from a you tube video https://www.youtube.com/watch?v=TZRSXNc0T1k&t=338s  */
-    box-shadow: 0 0 0 22vw rgba(68, 3, 41, 0.5); 
-}
+
 h1 {
     color: rgb(250, 246, 246);
     text-shadow: 0.2rem 0.2rem 0 rgba(136, 170, 233, 0.733), 0.4rem 0.4rem 0.1rem rgba(2, 43, 119, 0.931);

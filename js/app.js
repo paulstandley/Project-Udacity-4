@@ -74,11 +74,13 @@ class Enemy {
         h3score.innerText = playerScore;
         if(playersLives <= 0) {
             fullbodydiv.innerHTML = `<h2 id="h2lost">You got dead</h2>`; 
-            setTimeout(reLoadGame(), 5000);
+            player.sprite = "images/Heart.png";
+            setTimeout(reLoadGame, 3000);
         }
         if(playerScore >= 10) {
             fullbodydiv.innerHTML = `<h2 id="h2win">Well Done</h2>`;
-            setTimeout(reLoadGame(), 5000);s
+            player.sprite = "images/Star.png";
+            setTimeout(reLoadGame, 3000);
         }
     }
 
