@@ -79,17 +79,8 @@ var Engine = (function(global) {
      */
     function update(dt, tileArray) {
         updateEntities(dt);
-        checkCollisions(tileArray);
     }
-    function checkCollisions(tileArray) {
-        this.tileArray = [
-			[[1,1],[1,101],[1,202],[1,303],[1,404]],
-			[[101,1],[101,101],[101,202],[101,303],[101,404]],
-			[[202,1],[202,101],[202,202],[202,303],[202,404]],
-			[[303,1],[303,101],[303,202],[303,303],[303,404]],
-			[[404,1],[404,101],[404,202],[404,303],[404,404]]
-		];
-    }
+    
     /* This is called by the update function and loops through all of the
      * objects within your allEnemies array as defined in app.js and calls
      * their update() methods. It will then call the update function for your

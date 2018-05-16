@@ -1,46 +1,42 @@
-var allEnemies = [];
-var player;
-var speed_Random = 1,speed_Random_1 = 1,speed_Random_2 = 1,speed_Random_3 = 1;
-var random_location;
-var pos_enemy = [], pos_person = [];
-var addingX = 1, addingX_1 = 1, addingX_2 = 1, addingX_3 = 1, addingX_4 = 1, addingX_5 = 1, addingX_6 = 1;
-var counter_1 = 1, counter_2 = 1, counter_3 = 1;
-var width = 1, height = 1;
-var enemyCurrentPos = [];
-var enemyLastPos = 1;
-var tileArray;
-var tileCount_x = 0, tileCount_y = 0;
-var delta_v_x = 202,delta_v_y = 400;
-var playerScore = 0,playersLives = 100; 
-var h3score = document.getElementById("displayScore");
-var h3lives = document.getElementById("displayLives");
-var fullbodydiv = document.getElementById("fullBody");
-
+const allEnemies = [];
+let player;
+let random_location;
+let pos_enemy = [], pos_person = [];
+let addingX = 1, addingX_1 = 1, addingX_2 = 1, addingX_3 = 1, addingX_4 = 1, addingX_5 = 1, addingX_6 = 1;
+let counter_1 = 1, counter_2 = 1;
+let width = 1, height = 1;
+let delta_v_x = 202,delta_v_y = 400;
+let playerScore = 20,playersLives = 100; 
+const h3score = document.getElementById("displayScore");
+const h3lives = document.getElementById("displayLives");
+const fullbodydiv = document.getElementById("fullBody");
+const modal = document.getElementById("modalId");
 class Enemy {
     constructor() {
         this.width = 80;
         this.height = 70;
         addingX = Math.floor(Math.random()*500);
         pos_enemy = [[addingX] ,[61,141,221]];
-		// Variables applied to each of our instances go here,		
-		if(counter_2 == 1) {
+        // Variables applied to each of our instances go here,	
+
+		if(counter_1 == 1) {
             this.y = 61;
         }
-		if(counter_2 == 2) {
+		if(counter_1 == 2) {
             this.y = 141;
 		}
-		if(counter_2 == 3) {
+		if(counter_1 == 3) {
             this.y = 221;
 		}
-		if(counter_2 >= 4 && counter_2 <= 6) {
+		if(counter_1 >= 4 && counter_1 <= 6) {
             
-            if(counter_2 == 6) { 
-                counter_2 = 1;
+            if(counter_1 == 6) { 
+                counter_1 = 1;
             }
 			random_location = Math.floor(Math.random() * 3);
             this.y = pos_enemy[1][random_location];
 		}
-        counter_2++;
+        counter_1++;
     
         this.x = pos_enemy[0][addingX];
         
@@ -49,25 +45,13 @@ class Enemy {
     // Update the enemy's position, required method for game
     // Parameter: dt, a time delta between ticks
 
-    update(dt, tileArray) {
-        this.setDTMethod(dt);
+    update(dt) {
 
-        this.displayMethod();
+        this.displayMethod(dt);
 
         this.enemyCollMethod();
         
         this.displayOnPage();
-    }
-
-    setDTMethod(dt) {
-        speed_Random * dt;
-        speed_Random_2 * dt;
-        addingX_1 * dt;
-        addingX_2 * dt;
-        addingX_3 * dt;
-        addingX_4 * dt;
-        addingX_5 * dt;
-        addingX_6 * dt;
     }
 
     displayOnPage() {
@@ -77,23 +61,25 @@ class Enemy {
             fullbodydiv.innerHTML = `<h2 id="h2lost">You got dead</h2>`; 
             player.sprite = "images/Heart.png";
             allEnemies.forEach(function(val){
-                val.sprite = "images/Heart.png";
+            val.sprite = "images/Heart.png";
             });
             setTimeout(reLoadGame, 6000);
         }
-        if(playerScore >= 20) {
+        if(playerScore <= 0) {
             fullbodydiv.innerHTML = `<h2 id="h2win">Well Done</h2>`;
             player.sprite = "images/Star.png";
             allEnemies.forEach(function(val){
-                val.sprite = "images/Star.png";
+            val.sprite = "images/Star.png";
             });
+            displayEndGameWin();
             setTimeout(reLoadGame, 6000);
         }
     }
 
-    displayMethod() {
+    displayMethod(dt) {
         /* make enemys seam  randon  */
-        if(counter_3 == 1) {
+        if(counter_2 == 1) {
+            addingX_1 * dt;
             if (addingX_1 <= 500 || addingX_1 >= -100) {
                 this.x = addingX_1;
                 if (addingX_1 >= 500) {
@@ -101,7 +87,8 @@ class Enemy {
             }
             addingX_1 += 5;
         }
-        }else if(counter_3 == 2) {
+        }else if(counter_2 == 2) {
+            addingX_2 * dt;
             if (addingX_2 <= 600 || addingX_2 >= -300) {
                 this.x = addingX_2;
                 if (addingX_2 >= 600) {
@@ -109,7 +96,8 @@ class Enemy {
                 }
                 addingX_2 += 4.5;
             }
-        }else if(counter_3 == 3) {
+        }else if(counter_2 == 3) {
+            addingX_3 * dt;
             if (addingX_3 <= 700 || addingX_3 >= -400) {
                 this.x = addingX_3;
                 if (addingX_3 >= 700) {
@@ -117,7 +105,8 @@ class Enemy {
                 }
                 addingX_3 += 4;
             }
-        }else if(counter_3 == 4) {
+        }else if(counter_2 == 4) {
+            addingX_4 * dt;
             if (addingX_4 <= 950 || addingX_4 >= -150) {
                 this.x = addingX_4;
                 if (addingX_4 >= 950) {
@@ -125,7 +114,8 @@ class Enemy {
                 }
                 addingX_4 += 5.5;
             }
-        }else if(counter_3 == 5) {
+        }else if(counter_2 == 5) {
+            addingX_5 * dt;
             if (addingX_5 <= 850 || addingX_5 >= -300) {
                 this.x = addingX_5;
                 if (addingX_5 >= 850) {
@@ -133,7 +123,8 @@ class Enemy {
                 }
                 addingX_5 += 3.5;
             }
-        }else if(counter_3 == 6) {
+        }else if(counter_2 == 6) {
+            addingX_6 * dt;
             if (addingX_6 <= 800 || addingX_6 >= -200) {
                 this.x = addingX_6;
                 if (addingX_6 >= 800) {
@@ -142,9 +133,9 @@ class Enemy {
                 addingX_6 += 3;
             }
         }
-        counter_3++;
-        if(counter_3 > 6) {
-            counter_3 = 1;
+        counter_2++;
+        if(counter_2 > 6) {
+            counter_2 = 1;
         }
     }
 
@@ -185,9 +176,7 @@ class Person {
         this.width = 60;
         this.height = 70;
         // Variables applied to each of our instances go here,
-        this.personPosArray = [
-			[1,101,202,303,404],[1,101,202,303,404]
-		];
+        
         this.sprite = 'images/char-boy.png';
     }
     // Update, required method for game
@@ -213,16 +202,14 @@ class Person {
             if(evt == "left") {
                 if(delta_v_x === 0) {
                     // dont do anything
-                }
-                else{
+                }else{
                     this.x = delta_v_x += -101;
                 }
             }
             if(evt == "right") {
                 if(delta_v_x == 404) {
                     // dont do anything
-                }
-                else{
+                }else{
                     this.x = delta_v_x += 101;
                 }
             }
@@ -237,7 +224,7 @@ class Person {
             if (evt == "up") {
                 if(delta_v_y == 80) {
                     delta_v_y = 400;
-                    playerScore++;
+                    playerScore--;
                 }else{
                     this.y = delta_v_y += -80;
                 }
@@ -259,8 +246,7 @@ class Person {
     personCollMethod() {
         for(let i = 0; i < allEnemies.length; i++) {       
             if(allEnemies[i].x >= (this.x + this.width) || (allEnemies[i].x + allEnemies[i].width) <= this.x || allEnemies[i].y >= (this.y + this.height) || (allEnemies[i].y + allEnemies[i].height) <= this.y) {
-            }
-            else{
+            }else{
                 delta_v_x = 202;
                 delta_v_y = 400;
                 playersLives--;
@@ -272,14 +258,9 @@ class Person {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
 }
-// Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
-// Now instantiate your objects.
-// Place all enemy objects in an array called allEnemies
-// Place the player object in a variable called player
-//var enemy = new Enemy();
-player = new Person(); 
+
+player = new Person();
+
 MakeEnemiesFunction();
 MakeEnemiesFunction();
 MakeEnemiesFunction();
@@ -301,6 +282,10 @@ document.addEventListener('keyup', function(evt) {
 function MakeEnemiesFunction() {
 	enemy = new Enemy();
 	allEnemies.push(enemy);
+}
+displayEndGameWin();
+function displayEndGameWin() {
+    modal.innerHTML = `<h1 class="modal">You Win</h1>`; 
 }
 
 function reLoadGame() {
