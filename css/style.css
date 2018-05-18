@@ -65,5 +65,13 @@ p {
     height: 100%;
     width: 100%;
     overflow: auto;
-    background-color: rgba(137, 43, 226, 0.384);
+    background-color: rgb(97, 6, 62);
+}
+
+.modalContent {
+    background-color: rgba(44, 54, 201, 0.9);
+    margin: 25% auto;
+    padding: 2rem 4rem;
+    width: 50%;
+    border: 0.8rem ridge blue;
 }
